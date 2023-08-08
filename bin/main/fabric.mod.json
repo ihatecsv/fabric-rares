@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "rares",
+  "version": "${version}",
+  "name": "Rares",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/ihatecsv/Rares"
+  },
+  "license": "MIT",
+  "icon": "assets/rares/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "icu.x64.rares.client.RaresClient"
+    ],
+    "main": [
+      "icu.x64.rares.Rares"
+    ]
+  },
+  "mixins": [
+    "rares.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
