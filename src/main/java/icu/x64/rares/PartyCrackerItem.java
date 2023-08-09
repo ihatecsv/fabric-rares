@@ -1,29 +1,29 @@
 package icu.x64.rares;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.text.Text;
+import net.minecraft.util.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 public class PartyCrackerItem extends Item {
     private final Map<String, Integer> hatWeights = new HashMap<>();
-
-    public PartyCrackerItem() {
+    private boolean temporary;
+    public PartyCrackerItem(boolean temporary) {
         super(new FabricItemSettings().rarity(Rarity.EPIC));
-
+        this.temporary = temporary;
         hatWeights.put("gold", 1);
         hatWeights.put("black", 2);
         hatWeights.put("dark_gray", 2);
@@ -46,17 +46,14 @@ public class PartyCrackerItem extends Item {
         int totalWeight = hatWeights.values().stream().mapToInt(Integer::intValue).sum();
         int randomValue = new Random().nextInt(totalWeight);
         int accumulatedWeight = 0;
-
         for (Map.Entry<String, Integer> entry : hatWeights.entrySet()) {
             accumulatedWeight += entry.getValue();
             if (randomValue < accumulatedWeight) {
                 return entry.getKey();
             }
         }
-
         return "dark_aqua";
     }
-
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient()) {
@@ -65,7 +62,8 @@ public class PartyCrackerItem extends Item {
             user.getStackInHand(hand).decrement(1);
 
             String selectedHatColor = getRandomHat();
-            Identifier id = new Identifier(Rares.MOD_ID, selectedHatColor + "_partyhat");
+            String identifierPrefix = this.temporary ? "temporary_" : "";
+            Identifier id = new Identifier(Rares.MOD_ID, identifierPrefix + selectedHatColor + "_partyhat");
             Item partyHat = Registry.ITEM.get(id);
 
             ItemStack hatStack = new ItemStack(partyHat);
@@ -79,5 +77,10 @@ public class PartyCrackerItem extends Item {
 
         return TypedActionResult.success(user.getStackInHand(hand));
     }
-
+    @Override
+    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+        if (temporary) {
+            tooltip.add(Text.translatable("desc.rares.temporary").formatted(Formatting.GRAY));
+        }
+    }
 }

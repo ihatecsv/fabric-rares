@@ -1,9 +1,9 @@
 {
-  "parent": "rares:item/dark_green_partyhat",
+  "parent": "rares:item/temporary_aqua_partyhat",
   "texture_size": [64, 64],
   "textures": {
-    "0": "rares:item/dark_green_partyhat",
-    "particle": "rares:item/dark_green_partyhat"
+    "0": "rares:item/aqua_partyhat",
+    "particle": "rares:item/aqua_partyhat"
   },
   "elements": [
     {
