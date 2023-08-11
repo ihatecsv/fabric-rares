@@ -7,10 +7,10 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -64,7 +64,7 @@ public class PartyCrackerItem extends Item {
             String selectedHatColor = getRandomHat();
             String identifierPrefix = this.temporary ? "temporary_" : "";
             Identifier id = new Identifier(Rares.MOD_ID, identifierPrefix + selectedHatColor + "_partyhat");
-            Item partyHat = Registry.ITEM.get(id);
+            Item partyHat = Registries.ITEM.get(id);
 
             ItemStack hatStack = new ItemStack(partyHat);
 

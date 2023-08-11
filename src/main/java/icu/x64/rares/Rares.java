@@ -6,13 +6,14 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.function.Predicate;
 
@@ -30,11 +31,11 @@ public class Rares implements ModInitializer {
         String prefix = temporary ? "temporary_" : "";
         Identifier id = new Identifier(MOD_ID, prefix + color + "_partyhat");
         Item item = new PartyHatItem(temporary);
-        Registry.register(Registry.ITEM, id, item);
+        Registry.register(Registries.ITEM, id, item);
     }
     private Predicate<ItemStack> isTemporaryItem() {
         return stack -> {
-            Identifier id = Registry.ITEM.getId(stack.getItem());
+            Identifier id = Registries.ITEM.getId(stack.getItem());
             return id != null && id.getNamespace().equals(MOD_ID) && id.getPath().startsWith("temporary_");
         };
     }
@@ -53,8 +54,8 @@ public class Rares implements ModInitializer {
             registerPartyHat(color, true);  // Registering temporary hats
         }
 
-        Registry.register(Registry.ITEM, new Identifier("rares", "party_cracker"), PARTY_CRACKER_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("rares", "temporary_party_cracker"), TEMPORARY_PARTY_CRACKER_ITEM);
+        Registry.register(Registries.ITEM, new Identifier("rares", "party_cracker"), PARTY_CRACKER_ITEM);
+        Registry.register(Registries.ITEM, new Identifier("rares", "temporary_party_cracker"), TEMPORARY_PARTY_CRACKER_ITEM);
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(CommandManager.literal("cleartemporaryitems").requires(source -> source.hasPermissionLevel(2))

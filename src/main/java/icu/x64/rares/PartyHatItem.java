@@ -4,9 +4,9 @@ import net.fabricmc.fabric.api.item.v1.EquipmentSlotProvider;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.Equipment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Wearable;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 
-public class PartyHatItem extends Item implements Wearable {
+public class PartyHatItem extends Item implements Equipment {
     private boolean temporary;
     private static class PartyHatEquipmentSlotProvider implements EquipmentSlotProvider {
         public PartyHatEquipmentSlotProvider() {}
@@ -33,5 +33,10 @@ public class PartyHatItem extends Item implements Wearable {
         if (temporary) {
             tooltip.add(Text.translatable("desc.rares.temporary").formatted(Formatting.GRAY));
         }
+    }
+
+    @Override
+    public EquipmentSlot getSlotType(){
+        return EquipmentSlot.HEAD;
     }
 }
