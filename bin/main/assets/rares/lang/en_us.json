@@ -1,4 +1,5 @@
 {
+  "desc.rares.temporary": "Temporary",
   "item.rares.party_cracker": "Party Cracker",
   "item.rares.aqua_partyhat": "§bAqua Partyhat",
   "item.rares.black_partyhat": "§0Black Partyhat",
@@ -15,5 +16,22 @@
   "item.rares.light_purple_partyhat": "§dLight Purple Partyhat",
   "item.rares.red_partyhat": "§cRed Partyhat",
   "item.rares.yellow_partyhat": "§eYellow Partyhat",
-  "item.rares.white_partyhat": "§fWhite Partyhat"
+  "item.rares.white_partyhat": "§fWhite Partyhat",
+  "item.rares.temporary_party_cracker": "Party Cracker",
+  "item.rares.temporary_aqua_partyhat": "§bAqua Partyhat",
+  "item.rares.temporary_black_partyhat": "§0Black Partyhat",
+  "item.rares.temporary_blue_partyhat": "§9Blue Partyhat",
+  "item.rares.temporary_dark_aqua_partyhat": "§3Dark Aqua Partyhat",
+  "item.rares.temporary_dark_blue_partyhat": "§1Dark Blue Partyhat",
+  "item.rares.temporary_dark_gray_partyhat": "§8Dark Gray Partyhat",
+  "item.rares.temporary_dark_green_partyhat": "§2Dark Green Partyhat",
+  "item.rares.temporary_dark_purple_partyhat": "§5Dark Purple Partyhat",
+  "item.rares.temporary_dark_red_partyhat": "§4Dark Red Partyhat",
+  "item.rares.temporary_gold_partyhat": "§6Gold Partyhat",
+  "item.rares.temporary_gray_partyhat": "§7Gray Partyhat",
+  "item.rares.temporary_green_partyhat": "§aGreen Partyhat",
+  "item.rares.temporary_light_purple_partyhat": "§dLight Purple Partyhat",
+  "item.rares.temporary_red_partyhat": "§cRed Partyhat",
+  "item.rares.temporary_yellow_partyhat": "§eYellow Partyhat",
+  "item.rares.temporary_white_partyhat": "§fWhite Partyhat"
 }

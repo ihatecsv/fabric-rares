@@ -49,8 +49,8 @@ public class Rares implements ModInitializer {
     @Override
     public void onInitialize() {
         for (String color : COLORS) {
-            registerPartyHat(color, false); // Registering Normal hats
-            registerPartyHat(color, true);  // Registering Temporary hats
+            registerPartyHat(color, false); // Registering normal hats
+            registerPartyHat(color, true);  // Registering temporary hats
         }
 
         Registry.register(Registry.ITEM, new Identifier("rares", "party_cracker"), PARTY_CRACKER_ITEM);
