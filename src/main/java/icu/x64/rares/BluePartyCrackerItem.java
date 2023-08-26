@@ -7,9 +7,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.AbstractMap;
@@ -35,7 +36,7 @@ public class BluePartyCrackerItem extends Item {
     }
 
     public static void initialize() {
-        Registry.register(Registry.ITEM, new Identifier(Rares.MOD_ID, ITEM_ID), getItemInstance());
+        Registry.register(Registries.ITEM, new Identifier(Rares.MOD_ID, ITEM_ID), getItemInstance());
     }
 
     public static BluePartyCrackerItem getItemInstance() {

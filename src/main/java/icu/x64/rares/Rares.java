@@ -6,13 +6,14 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.function.Predicate;
 
@@ -24,6 +25,7 @@ public class Rares implements ModInitializer {
             "gold", "gray", "green", "light_purple", "red",
             "yellow", "white"
     };
+
     private void registerPartyHat(String color, boolean temporary) {
         String prefix = temporary ? "temporary_" : "";
         Identifier id = new Identifier(MOD_ID, prefix + color + "_partyhat");
@@ -59,7 +61,7 @@ public class Rares implements ModInitializer {
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(CommandManager.literal("cleartemporaryitems").requires(source -> source.hasPermissionLevel(2))
-                    .executes(context -> clearTemporaryItems(context))
+                    .executes(this::clearTemporaryItems)
             );
         });
     }

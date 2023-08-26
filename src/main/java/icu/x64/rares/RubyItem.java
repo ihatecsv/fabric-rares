@@ -1,9 +1,10 @@
 package icu.x64.rares;
 
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class RubyItem extends Item {
     public static final String ITEM_ID = "ruby";
@@ -12,12 +13,12 @@ public class RubyItem extends Item {
         super(settings);
     }
     public static void initialize() {
-        Registry.register(Registry.ITEM, new Identifier(Rares.MOD_ID, ITEM_ID), getItemInstance());
+        Registry.register(Registries.ITEM, new Identifier(Rares.MOD_ID, ITEM_ID), getItemInstance());
     }
 
     public static RubyItem getItemInstance() {
         if (itemInstance == null) {
-            itemInstance = new RubyItem(new Settings().group(ItemGroup.MISC));
+            itemInstance = new RubyItem(new FabricItemSettings());
         }
         return itemInstance;
     }
