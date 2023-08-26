@@ -1,6 +1,12 @@
 {
   "desc.rares.temporary": "Temporary",
+
   "item.rares.party_cracker": "Party Cracker",
+  "item.rares.blue_party_cracker": "Party Cracker",
+
+  "item.rares.disk_of_returning": "Disk of Returning",
+  "item.rares.ruby": "Ruby",
+
   "item.rares.aqua_partyhat": "§bAqua Partyhat",
   "item.rares.black_partyhat": "§0Black Partyhat",
   "item.rares.blue_partyhat": "§9Blue Partyhat",
@@ -17,6 +23,7 @@
   "item.rares.red_partyhat": "§cRed Partyhat",
   "item.rares.yellow_partyhat": "§eYellow Partyhat",
   "item.rares.white_partyhat": "§fWhite Partyhat",
+
   "item.rares.temporary_party_cracker": "Party Cracker",
   "item.rares.temporary_aqua_partyhat": "§bAqua Partyhat",
   "item.rares.temporary_black_partyhat": "§0Black Partyhat",

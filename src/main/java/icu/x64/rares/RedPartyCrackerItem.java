@@ -18,11 +18,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class PartyCrackerItem extends Item {
+public class RedPartyCrackerItem extends Item {
+    public static final String ITEM_ID = "party_cracker";
+    private static RedPartyCrackerItem itemInstance;
+    private static RedPartyCrackerItem temporaryItemInstance;
     private final Map<String, Integer> hatWeights = new HashMap<>();
     private boolean temporary;
-    public PartyCrackerItem(boolean temporary) {
-        super(new FabricItemSettings().rarity(Rarity.EPIC));
+    public RedPartyCrackerItem(Settings settings, boolean temporary) {
+        super(settings);
         this.temporary = temporary;
         hatWeights.put("gold", 1);
         hatWeights.put("black", 2);
@@ -41,7 +44,22 @@ public class PartyCrackerItem extends Item {
         hatWeights.put("aqua", 200);
         hatWeights.put("dark_aqua", 200);
     }
-
+    public static void initialize() {
+        Registry.register(Registry.ITEM, new Identifier(Rares.MOD_ID, ITEM_ID), getItemInstance());
+        Registry.register(Registry.ITEM, new Identifier(Rares.MOD_ID, "temporary_" + ITEM_ID), getTemporaryItemInstance());
+    }
+    public static RedPartyCrackerItem getItemInstance() {
+        if (itemInstance == null) {
+            itemInstance = new RedPartyCrackerItem(new FabricItemSettings().rarity(Rarity.EPIC), false);
+        }
+        return itemInstance;
+    }
+    public static RedPartyCrackerItem getTemporaryItemInstance() {
+        if (temporaryItemInstance == null) {
+            temporaryItemInstance = new RedPartyCrackerItem(new FabricItemSettings().rarity(Rarity.EPIC), true);
+        }
+        return temporaryItemInstance;
+    }
     private String getRandomHat() {
         int totalWeight = hatWeights.values().stream().mapToInt(Integer::intValue).sum();
         int randomValue = new Random().nextInt(totalWeight);

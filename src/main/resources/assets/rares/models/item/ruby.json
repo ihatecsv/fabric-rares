@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rares:item/temporary_party_cracker"
+    "layer0": "rares:item/ruby"
   }
 }
