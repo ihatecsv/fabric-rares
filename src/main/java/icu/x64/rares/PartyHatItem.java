@@ -15,6 +15,7 @@ import java.util.List;
 
 
 public class PartyHatItem extends Item implements Wearable {
+    private static final String COLOR_NBT_KEY = "Color";
     private boolean temporary;
     private static class PartyHatEquipmentSlotProvider implements EquipmentSlotProvider {
         public PartyHatEquipmentSlotProvider() {}
@@ -33,5 +34,11 @@ public class PartyHatItem extends Item implements Wearable {
         if (temporary) {
             tooltip.add(Text.translatable("desc.rares.temporary").formatted(Formatting.GRAY));
         }
+    }
+    public static void setColor(ItemStack stack, Formatting color) {
+        stack.getOrCreateNbt().putString(COLOR_NBT_KEY, color.getName());
+    }
+    public static Formatting getColor(ItemStack stack) {
+        return Formatting.byName(stack.getOrCreateNbt().getString(COLOR_NBT_KEY));
     }
 }

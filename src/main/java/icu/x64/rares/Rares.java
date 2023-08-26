@@ -24,8 +24,6 @@ public class Rares implements ModInitializer {
             "gold", "gray", "green", "light_purple", "red",
             "yellow", "white"
     };
-    private final PartyCrackerItem PARTY_CRACKER_ITEM = new PartyCrackerItem(false);
-    private final PartyCrackerItem TEMPORARY_PARTY_CRACKER_ITEM = new PartyCrackerItem(true);
     private void registerPartyHat(String color, boolean temporary) {
         String prefix = temporary ? "temporary_" : "";
         Identifier id = new Identifier(MOD_ID, prefix + color + "_partyhat");
@@ -35,7 +33,7 @@ public class Rares implements ModInitializer {
     private Predicate<ItemStack> isTemporaryItem() {
         return stack -> {
             Identifier id = Registry.ITEM.getId(stack.getItem());
-            return id != null && id.getNamespace().equals(MOD_ID) && id.getPath().startsWith("temporary_");
+            return id.getNamespace().equals(MOD_ID) && id.getPath().startsWith("temporary_");
         };
     }
     private int clearTemporaryItems(CommandContext<ServerCommandSource> context) {
@@ -53,12 +51,15 @@ public class Rares implements ModInitializer {
             registerPartyHat(color, true);  // Registering temporary hats
         }
 
-        Registry.register(Registry.ITEM, new Identifier("rares", "party_cracker"), PARTY_CRACKER_ITEM);
-        Registry.register(Registry.ITEM, new Identifier("rares", "temporary_party_cracker"), TEMPORARY_PARTY_CRACKER_ITEM);
+        RedPartyCrackerItem.initialize();
+        BluePartyCrackerItem.initialize();
+        DiskOfReturningItem.initialize();
+        RubyItem.initialize();
+        // MysteryBoxItem.initialize();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(CommandManager.literal("cleartemporaryitems").requires(source -> source.hasPermissionLevel(2))
-                    .executes(context -> clearTemporaryItems(context))
+                    .executes(this::clearTemporaryItems)
             );
         });
     }
